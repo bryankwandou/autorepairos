@@ -1,0 +1,3 @@
+import { NextResponse } from "next/server";
+import { approve } from "@/lib/autorepair";
+export async function POST(request:Request,{params}:{params:Promise<{id:string}>}){try{const {id}=await params;const body=await request.json();if(!["approved","declined"].includes(body.decision))throw new Error("A valid decision is required.");const item=approve(id,String(body.token||""),body.decision);return NextResponse.json({status:item.approvalStatus,approvedAt:item.approvedAt});}catch(error){return NextResponse.json({message:error instanceof Error?error.message:"Unable to record approval."},{status:400});}}

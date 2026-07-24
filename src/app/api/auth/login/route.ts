@@ -1,0 +1,6 @@
+import { NextResponse } from "next/server";
+import { AUTH_COOKIE_NAME } from "@/constants/auth";
+import { verifyPassword } from "@/lib/auth";
+import { createAuthToken } from "@/lib/jwt";
+import { ensureSchema, getPool } from "@/lib/db";
+export async function POST(request:Request){const body=await request.json().catch(()=>null);const email=String(body?.email||"").trim().toLowerCase();const password=String(body?.password||"");let user:{id:string;email:string}|null=null;if(!process.env.DATABASE_URL){if(email==="advisor@autorepairos.app"&&password==="repair123")user={id:"demo-advisor",email};}else{await ensureSchema();const result=await getPool().query("SELECT id, email, password_hash FROM users WHERE email = $1",[email]);const row=result.rows[0];if(row&&await verifyPassword(password,row.password_hash))user={id:row.id,email:row.email};}if(!user)return NextResponse.json({message:"Email or password did not match."},{status:401});const token=await createAuthToken({userId:user.id,email:user.email});const response=NextResponse.json({message:"Signed in",token,user});response.cookies.set(AUTH_COOKIE_NAME,token,{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",maxAge:7200,path:"/"});return response;}
