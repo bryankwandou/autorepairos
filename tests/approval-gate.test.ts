@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { approve, canLogWorkAgainst, createLineItem, draftDiagnostic, getWorkOrder, logLabor, logPart, resetDemo, reviewDiagnostic } from "../src/lib/autorepair.ts";
+import { enforceGroundingPolicy } from "../src/lib/groq-agent.ts";
 
 test("complete approval-gated repair workflow",()=>{
   resetDemo();
@@ -21,3 +22,5 @@ test("complete approval-gated repair workflow",()=>{
   assert.equal(draft.status,"drafting");
   assert.equal(reviewDiagnostic(draft.id).status,"reviewed");
 });
+
+test("grounding policy removes invented severity and repair scope",()=>{const result=enforceGroundingPolicy("Front pads measure 2 mm. No hydraulic leaks found.",{finding:"Pads are dangerously worn",evidence:[],customerExplanation:"Stopping distance may increase",whyItMatters:"Brake failure is possible",recommendedAction:"Replace immediately",approvalReadiness:"ready",ambiguityFlags:[],unsupportedUrgencyDetected:false},"test-model");assert.equal(result.policyAdjusted,true);assert.equal(result.approvalReadiness,"needs_clarification");assert.equal(result.finding,"Front pads measure 2 mm. No hydraulic leaks found.");assert.equal(result.unsupportedUrgencyDetected,false);});
