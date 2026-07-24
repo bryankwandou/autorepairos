@@ -13,9 +13,9 @@ The original idea was too broad whenever it tried to become another complete sho
 | Problem severity | 9/10 | Surprise work creates disputes, chargebacks, lost trust, and unbillable technician time. |
 | Product clarity | 9/10 | The hard-block promise is specific and demonstrable. |
 | Differentiation | 8/10 | The moat is enforcement and evidence, not another digital estimate screen. |
-| MVP completeness | 10/10 | Approval, labor, parts, discovery, live Groq diagnostics, overage, wallet connection, and devnet verification run end to end. |
-| Production readiness | 7/10 | Public deployment is automated; durable multi-tenant persistence and communication delivery remain the next infrastructure layer. |
-| Design quality | 8/10 | Clear hierarchy, explicit status text, mobile approval, and practical shop-floor tone. |
+| MVP completeness | 10/10 | Approval, labor, parts, discovery, two live Groq agents, overage, wallet connection, and devnet verification run end to end. |
+| Production readiness | 8/10 | Public deployment, CI, production smoke testing, and a proof console are present; durable multi-tenant persistence and communication delivery remain next. |
+| Design quality | 9/10 | Clear hierarchy, restrained operational color, reduced-motion support, mobile approval, and public proof-first trust UX. |
 | Monetization | 8/10 | Sell per location, not per user; trust and dispute reduction support premium pricing. |
 | Expansion path | 8/10 | Payments, warranty evidence, insurer workflows, and supplier records extend the same authorization ledger. |
 
@@ -36,6 +36,8 @@ The original idea was too broad whenever it tried to become another complete sho
 - Avoid decorative 3D animation in the approval flow; it competes with legal and financial clarity.
 - Preserve the restrained blue, slate, green, and amber system. It reads as operational software rather than consumer fintech theater.
 - Keep rejection language protective: the system prevented unapproved and potentially unbillable work.
+- Keep motion concentrated on landing, AI result transitions, and proof discovery; never animate the legal customer decision itself.
+- Keep the public proof console factual: configured state, commit identity, controls, and externally verifiable records.
 - The next design priority is evidence media: annotated photos, measurements, and a clear ?what changed? comparison for revised estimates.
 
 ## Three fixes before paid pilots
@@ -44,6 +46,6 @@ The original idea was too broad whenever it tried to become another complete sho
 2. Real SMS and email delivery with delivery status, resend controls, and token revocation.
 3. Shop onboarding that imports labor rate, tax rules, approval expiry, and overage policy in under ten minutes.
 
-## Explicit rejection
+## Blockchain boundary
 
-Blockchain integration is not justified for this product. It adds wallet friction to a customer-consent flow without improving the shop's legal record more than a well-designed signed audit log. Adding it would weaken adoption and trust.
+Wallets are not part of customer approval and must never become required friction in that flow. Solana devnet is limited to an optional technical verification surface that proves wallet connection, memo creation, confirmation, and server-side transaction inspection. The signed application audit log remains the authorization record.

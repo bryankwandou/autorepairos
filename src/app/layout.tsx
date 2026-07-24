@@ -7,18 +7,10 @@ import "./workflow-overrides.css";
 import "./integration-overrides.css";
 
 export const metadata: Metadata = {
-  title: "UMKM Pintar — Asisten AI untuk Usaha Kecil Indonesia",
-  description:
-    "Platform AI yang membantu UMKM Indonesia membuat konten pemasaran, mencatat keuangan, dan menganalisis bisnis — cukup dengan bahasa sehari-hari.",
+  title: "AutoRepairOS — Approval-First Repair Operations",
+  description: "Approval-gated repair orders, grounded AI diagnostics, authorization risk review, and verifiable Solana devnet proof for independent auto shops.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="id">
-      <body>
-        <SiteHeader />
-        {children}
-      </body>
-    </html>
-  );
+  return <html lang="en"><body><SiteHeader/>{children}</body></html>;
 }
